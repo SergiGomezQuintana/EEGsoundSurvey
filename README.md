@@ -1,2 +1,0 @@
-# SoundSurvey
-Sonification survey
