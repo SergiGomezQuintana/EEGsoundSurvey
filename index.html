@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+  html {
+    font-size: 24px;  
+    font-family: Verdana; 
+    background-color: #fffcf7; 
+    color: #333333;
+  }
+  body {
+    display: block;
+    margin: 8px;
+    text-align: center;
+
+    max-width: 450px;
+    margin: auto;
+  }
+  form{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+  }
+  input{
+    font-size: 24px;
+  } 
+  input[type=radio] {
+    height:20px; 
+    width:20px; 
+    vertical-align: top;
+  }
+  audio {
+    width: 300px;
+    height: 54px;    
+  }
+
+</style>
+</head>
+<body>
+  <!--
+  <input onclick="restart()" type="button" id="restart" name="restart" value="Restart">
+  /<br><br>-->
+
+
+
+
+<figure>
+    <figcaption><b id='fileName'></b></figcaption><br>
+    <audio autoplay id="sample"
+        controls
+        src="">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+</figure>
+
+<form action="/action_page.php">
+  <p>Can you hear any seizures?</p>
+  <input type="radio" id="yes" name="seizure" value="Yes">
+  <label for="yes">YES</label>
+  <input type="radio" id="no" name="seizure" value="No">
+  <label for="no">NO</label>
+  <br><br>
+  <input onclick="loadPreviousQuestion()" type="button" id="previous" name="previous" value=" < ">
+  <input onclick="loadNextQuestion()" type="button" id="next" name="next" value=" > ">
+  <br><br>
+  <input onclick="saveAnswers()" style="display: none;" type="button" id="save" name="save" value="Save & Finish">
+
+<a href="./audio/help.html" 
+  target="popup" 
+  onclick="window.open('./audio/help.html','popup','width=600,height=600'); return false;">
+    <p style="font-size:16px;">Get help!</p>
+</a>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  localStorage.clear();
+  var currentQuestion = localStorage.getItem('currentQuestion');
+  console.log('currentQuestion: ' + currentQuestion);
+  var questions = JSON.parse(localStorage.getItem('questions'));
+  console.log('questions: ' + JSON.stringify(questions));
+  var answers = JSON.parse(localStorage.getItem('answers'));
+  console.log('answers: ' + JSON.stringify(answers));
+  window.onload = function() {
+    if (currentQuestion === null || questions === null || answers === null) {
+      //Set current question to 0
+      currentQuestion = 0;
+      localStorage.setItem('currentQuestion', 0);
+
+      //Get files in dir
+      questions = [
+        'eeg1.mp3',
+        'eeg2.mp3',
+        'eeg3.mp3',
+        'eeg4.mp3',
+        'eeg5.mp3',
+        'eeg6.mp3',
+        'eeg7.mp3',
+        'eeg8.mp3',
+        'eeg9.mp3',
+        'eeg10.mp3',
+        'eeg11.mp3',
+        'eeg12.mp3',
+        'eeg13.mp3',
+        'eeg14.mp3',
+        'eeg15.mp3',
+        'eeg16.mp3',
+        'eeg17.mp3',
+        'eeg18.mp3',
+        'eeg19.mp3',
+        'eeg20.mp3',
+        'eeg21.mp3',
+        'eeg22.mp3',
+        'eeg23.mp3',
+        'eeg24.mp3',
+        'eeg25.mp3',
+        'eeg26.mp3',
+        'eeg27.mp3',
+        'eeg28.mp3',
+        'eeg29.mp3',
+        'eeg30.mp3',
+        'eeg31.mp3',
+        'eeg32.mp3',
+        'eeg33.mp3',
+        'eeg34.mp3',
+        'eeg35.mp3',
+        'eeg36.mp3',
+        'eeg37.mp3',
+        'eeg38.mp3',
+        'eeg39.mp3',
+        'eeg40.mp3',
+        'eeg41.mp3',
+        'eeg42.mp3',
+        'eeg43.mp3',
+        'eeg44.mp3',
+        'eeg45.mp3',
+        'eeg46.mp3',
+        'eeg47.mp3',
+        'eeg48.mp3',
+        'eeg49.mp3',
+        'eeg50.mp3',
+        'eeg51.mp3',
+        'eeg52.mp3',
+        'eeg53.mp3',
+        'eeg54.mp3',
+        'eeg55.mp3',
+        'eeg56.mp3',
+        'eeg57.mp3',
+        'eeg58.mp3',
+        'eeg59.mp3',
+        'eeg60.mp3',
+        'eeg61.mp3',
+        'eeg62.mp3',
+        'eeg63.mp3',
+        'eeg64.mp3',
+        'eeg65.mp3',
+        'eeg66.mp3',
+        'eeg67.mp3',
+        'eeg68.mp3',
+        'eeg69.mp3',
+        'eeg70.mp3',
+        'eeg71.mp3',
+        'eeg72.mp3',
+        'eeg73.mp3',
+        'eeg74.mp3',
+        'eeg75.mp3',
+        'eeg76.mp3',
+        'eeg77.mp3',
+        'eeg78.mp3',
+        'eeg79.mp3',
+      ];
+      //shuffle(questions);
+      console.log('questions: ' + JSON.stringify(questions));
+      localStorage.setItem('questions', JSON.stringify(questions));
+
+      resetAnswers();
+    }
+    loadQuestion(currentQuestion);
+  };
+
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  function loadQuestion(questionNumber) {
+    //Check answer if necessary
+    if(answers[questionNumber] === 'y') {
+      document.getElementById("yes").checked = true;
+    }
+    if(answers[questionNumber] === 'n') {
+      document.getElementById("no").checked = true;
+    }
+  
+
+    //Update current question
+    currentQuestion = questionNumber;
+    localStorage.setItem('currentQuestion', questionNumber);
+    console.log('currentQuestion: ' + questionNumber);
+
+    //Load Audio
+    document.getElementById('sample').src = "./audio/" + questions[questionNumber];
+    document.getElementById('fileName').innerHTML = questions[questionNumber].substr(0, questions[questionNumber].length-4).toUpperCase();
+
+    //Show / hide next and previous
+    if(questionNumber < 1) {
+      document.getElementById('previous').disabled  = true;
+    } else {
+      document.getElementById('previous').disabled  = false;
+    }
+
+    if(questionNumber >= questions.length - 1) {
+      document.getElementById('next').disabled  = true;
+      document.getElementById('save').style.display = 'inline';
+    } else {
+      document.getElementById('next').disabled  = false;
+      document.getElementById('save').style.display = 'none';
+    }
+  }
+
+  function loadPreviousQuestion() {
+    loadQuestion(parseInt(currentQuestion) - 1);
+  }
+
+  function loadNextQuestion() {
+    if(checkAndSaveCurrentAnswer()) {
+      //Uncheck responses
+      document.getElementById("yes").checked = false;
+      document.getElementById("no").checked = false;
+
+      //Load next question
+      loadQuestion(parseInt(currentQuestion) + 1);
+    }
+  }
+
+  function restart() {
+    localStorage.clear();
+    location.reload();
+  }
+
+  function resetAnswers() {
+    answers = [];
+    for (var i=0; i<questions.length; i++) {
+      answers[i] = '';
+    }
+    localStorage.setItem('answers', JSON.stringify(answers));
+  }
+
+  function checkAndSaveCurrentAnswer(){
+    //Check and save answer
+    if (document.getElementById("yes").checked === true) {
+      answers[currentQuestion] = 'y';
+    } else if (document.getElementById("no").checked === true) {
+      answers[currentQuestion] = 'n';
+    } else {
+      alert("Please select an answer before continue!");
+      return false;
+    }
+
+    localStorage.setItem('answers', JSON.stringify(answers));
+    console.log('answers: ' + JSON.stringify(answers));
+    return true;
+  }
+
+  function saveAnswers() {
+    if(checkAndSaveCurrentAnswer()){
+      sortedAnswers = [];
+      for (var i=0; i<questions.length; i++) {
+        sortedAnswers[questions[i]] = answers[i];
+      }
+      sortedAnswers = sortByKey(sortedAnswers);
+      console.log(sortedAnswers);
+      saveCSVFile(sortedAnswers);
+    }
+  }
+
+  function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+
+  function saveCSVFile(sortedAnswers) {
+    const rows = [
+      ['file', 'answer'],
+    ];
+
+    for (var key in sortedAnswers) {
+      rows.push([key.substr(0, key.length-4), sortedAnswers[key]]);
+    }
+    
+
+    let csvContent = "data:text/csv;charset=utf-8," 
+    + rows.map(e => e.join(",")).join("\n");
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "SoundSurvey.csv");
+    document.body.appendChild(link);
+
+    link.click();
+  }
+  
+  $(window).on("beforeunload", function (event) {
+    return confirm("Are you sure you want to leave?");
+  });
+</script>

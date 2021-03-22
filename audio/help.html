@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+  html {
+    font-size: 24px;  
+    font-family: Verdana; 
+    background-color: #fffcf7; 
+    color: #333333;
+  }
+  body {
+    display: block;
+    margin: 8px;
+    text-align: center;
+
+    max-width: 450px;
+    margin: auto;
+  }
+  form{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+  }
+  input{
+    font-size: 24px;
+  } 
+  input[type=radio] {
+    height:20px; 
+    width:20px; 
+    vertical-align: top;
+  }
+  audio {
+    width: 300px;
+    height: 54px;    
+  }
+
+</style>
+</head>
+<body>
+  <!--
+  <input onclick="restart()" type="button" id="restart" name="restart" value="Restart">
+  /<br><br>-->
+
+<p>
+Your goal is to <b>find seizure events</b> on the presented audio samples.
+
+</p>
+
+<figure>
+    <figcaption><b id='fileName'>Example with seizures</b></figcaption><br>
+    <audio id="sample"
+        controls
+        src="./eeg31.mp3">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    <p style="font-size:14px; margin-top:0px"><i>
+    High-pitched sounds with small tonal variations.</i>
+    </p>
+</figure>
+
+<figure>
+    <figcaption><b id='fileName'>Example with NO seizures</b></figcaption><br>
+    <audio id="sample"
+        controls
+        src="./eeg28.mp3">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+    <p style="font-size:14px; margin-top:0px"><i>
+    Quiet crackling, popping or hissing sounds.</i>
+    </p>
+</figure>
+
+<p>
+Choose YES when the audio sample contains any seizures.
+
+</p>
+<p>
+Chose NO when there are none at all.
+</p>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
