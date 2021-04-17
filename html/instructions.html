@@ -44,11 +44,13 @@
   /<br><br>-->
 
   <p>
-    Your goal is to <b>find seizure events</b> on the presented audio samples. 
-
+    Your goal is to <b>detect whether any seizure events are present</b> in a given audio sample
   </p>
   <p style="font-size:14px; margin-top:0px">
-    Find some examples that would give you some clues on how to take decisions:
+    Find below a few clues on how seizures typically sound using our method and how different is the sound of background EEG.
+  </p>
+  <p style="font-size:14px; margin-top:0px">
+    <i>NOTE: You would need to use headphones or speakers to listen to these sounds.</i>
   </p>
 
   <div style="border: 1px solid black;">
@@ -56,7 +58,7 @@
       <b>SEIZURE EXAMPLES:</b>
     </p>
     <figure>
-      <figcaption><b id='fileName' style="font-size:14px">1) Sample with 2 clear seizure events (easy)</b></figcaption>
+      <figcaption><b id='fileName' style="font-size:14px">1) Typical seizure events</b></figcaption>
       <audio id="sample"
       controls
       src="./audio/eeg31.mp3">
@@ -64,12 +66,12 @@
       <code>audio</code> element.
     </audio>
     <p style="font-size:14px; margin-top:0px">
-      The acoustic characteristics of a seizure are high-pitched sounds with tonal variations.
+      You can easily hear a pitch-evolving sound (like a chirp) with tonal variations. Seizures evolve in time and this is perceivable by the human ear.
     </p>
   </figure>
 
   <figure>
-    <figcaption><b id='fileName' style="font-size:14px">2) Extremely low seizure (difficult)</b></figcaption>
+    <figcaption><b id='fileName' style="font-size:14px">2) An example of a low-amplitude seizure</b></figcaption>
     <audio id="sample"
     controls
     src="./audio/eeg54.mp3">
@@ -77,12 +79,12 @@
     <code>audio</code> element.
   </audio>
   <p style="font-size:14px; margin-top:0px">
-  Seizures can manifest in EEG waveforms with small amplitude, which translates to lower sounds. </br><i>TIP: Turn up the volume for better perception</i>
+  Seizures can be very low amplitude. It is more challenging but the pitch evolution can still be perceived. </br><i>TIP: Turn up the volume for better perception.</i>
 </p>
 </figure>
 
 <figure>
-  <figcaption><b id='fileName' style="font-size:14px">3) Extremely short seizure (difficult)</b></figcaption>
+  <figcaption><b id='fileName' style="font-size:14px">3) An example of a short seizure</b></figcaption>
   <audio id="sample"
   controls
   src="./audio/eeg68.mp3">
@@ -90,16 +92,16 @@
   <code>audio</code> element.
 </audio>
 <p style="font-size:14px; margin-top:0px">
-Some seizures are very short, but high-pitched sounds with tonal variations are still noticeable. </br><i>TIP: You might want to listen to it twice</i>
+Seizures can be very short. It can be tricky but high-pitched sounds with tonal variations are still noticeable. </br><i>TIP: You might want to listen to it twice.</i>
 </p>
 </figure>
 </div>
 <div style="border: 1px solid black;">
   <p style="padding-top:2px">
-    <b>NO SEIZURE EXAMPLES:</b>
+    <b>BACKGROUND EXAMPLES (NO SEIZURE):</b>
   </p>
   <figure>
-    <figcaption><b id='fileName' style="font-size:14px">1) Background activity (easy)</b></figcaption>
+    <figcaption><b id='fileName' style="font-size:14px">1) An example of background activity</b></figcaption>
     <audio id="sample"
     controls
     src="./audio/eeg28.mp3">
@@ -107,12 +109,12 @@ Some seizures are very short, but high-pitched sounds with tonal variations are 
     <code>audio</code> element.
   </audio>
   <p style="font-size:14px; margin-top:0px">
-    Quiet crackling, popping or hissing sounds.
+    Quiet crackling, popping or hissing sounds. No patterns, no evolution.
   </p>
 </figure>
 
 <figure>
-  <figcaption><b id='fileName' style="font-size:14px">2) ECG artifact coupling (difficult)</b></figcaption>
+  <figcaption><b id='fileName' style="font-size:14px">2) An example of an artifact</b></figcaption>
   <audio id="sample"
   controls
   src="./audio/eeg72.mp3">
@@ -120,16 +122,16 @@ Some seizures are very short, but high-pitched sounds with tonal variations are 
   <code>audio</code> element.
 </audio>
 <p style="font-size:14px; margin-top:0px">
-Unlike seizures, the tone is too long and remains almost constant, showing little or no pitch variations.</br><i>TIP: It is just an annoying mosquito passing by...</i>
+Some artifacts can mimic seizures and result in a high-pitch sound, but unlike seizures the tone remains constant, showing little or no pitch evolution.</br><i>TIP: It is just an annoying mosquito passing by...</i>
 </p>
 </figure>
 </div>
 <p>
-  You would choose <b>YES</b> when the audio sample contains any seizures.
+  Please choose <b>YES</b> when you think that the audio sample contains seizures (any).
 
 </p>
 <p>
-  You would chose <b>NO</b> when there are none at all.
+  Please choose <b>NO</b> when you perceive no presence of seizure events (none)
 </p>
 <p>
   Are you ready?
