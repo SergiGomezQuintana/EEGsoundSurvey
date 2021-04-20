@@ -12,7 +12,6 @@
       display: block;
       margin: 8px;
       text-align: center;
-
       max-width: 450px;
       margin: auto;
     }
@@ -35,34 +34,37 @@
       width: 300px;
       height: 54px;    
     }
-
   </style>
 </head>
 <body>
-
   <p>
     Welcome to the survey! You are about to hear newborn brainwaves!
   </p>
   <p style="font-size: 14px;text-align: justify;">
     Electroencephalography (EEG) is a very useful tool to analyse the electrical activity of the brain, in particular to detect seizure events.
   </p>
-  <p  style="font-size: 14px;text-align: justify;">
+  <p style="font-size: 14px;text-align: justify;">
     <b>Background:</b> Seizures are associated with abnormal electrical discharges of the brain. Often the signs and symptoms induced by neonatal seizures are subtle and difficult to detect clinically. Therefore, EEG plays an essential role in detecting the neonatal seizures as well as monitoring the treatment response.
   </p>
-  <p  style="font-size: 14px;text-align: justify;">
+  <p style="font-size: 14px;text-align: justify;">
     <b>Problem:</b> Significant training is required to visually interpret neonatal EEG signals. This expertise is not available 24/7 onsite. Moreover, the process of reviewing hours of EEG can be time-consuming as seizures can be rare events occuring for relatively short periods of time.
   </p>
-  <p  style="font-size: 14px;text-align: justify;">
-    <b>Solution:</b> Exploring advanced signal processing and artificial intelligence techniques, a method that converts <u>EEG to sound</u> was developed in the EmbeddedSystems lab, School of Engineering, UCC. This method allows for revision of hours of neonatal EEG <u>in a matter of seconds</u> by a healthcare professional who was <u>not trained</u> in neonatal EEG interpretation. The AI-driven EEG-to-sound conversion focuses listener's attention to "interesting" seizure-like segments while compressing long EEG background activity. 
+  <img src="./html/method_3.png"  style="width: 100%">
+  <p style="font-size: 14px;text-align: justify;">
+    <b>Solution:</b> Exploring advanced signal processing and artificial intelligence (AI) techniques, a method that converts <u>EEG to sound</u> was developed in the EmbeddedSystems lab, School of Engineering, UCC. This method allows for revision of hours of neonatal EEG <u>in a matter of seconds</u> by a healthcare professional who was <u>not trained</u> in neonatal EEG interpretation. The AI-driven EEG-to-sound conversion focuses listener's attention to "interesting" seizure-like segments while compressing long EEG background activity. 
   </p>
-  <p  style="font-size: 14px;text-align: justify;">
+  <p style="font-size: 14px;text-align: justify;">
     <b>This study aims to assess the accuracy of the developed sonification method in detecting the presence of seizures in a chosen EEG recording.</b>
   </p>
-
-<a href="./html/instructions.html">
+  <a href="./html/instructions.html">
     <p style="padding: 10px;border: 1px solid black;background-color:#EEEEEE">Next</p>
-</a>
-
+  </a>
+  <p style="font-size: 10px;text-align: justify;">
+    <i>A publicly available dataset was used for the purpose of this research. The EEG recordings were performed as standard of care at the Helsinki University Hospital, Finland. Permission to publicly release the de-identified EEG recordings was received from the local ethics committee of the Children’s Hospital, Helsinki University Hospital, Finland. The sound files used in this survey were generated from this dataset preserving the patient's annonimity. The authors of this work want to thank Helsinki University Hospital for making this dataset publicly available.</i>
+    <br><br> 
+    Source: 
+    Stevenson, N., Tapani, K., Lauronen, L. <i>et al.</i> A dataset of neonatal EEG recordings with seizure annotations.<i>Sci Data</i> <b>6, </b>190039 (2019). https://doi.org/10.1038/sdata.2019.39    
+  </p>
 </body>
 
 <footer >
@@ -74,5 +76,5 @@
   </p>
 </footer>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<p class="c-bibliographic-information__citation"></p>
