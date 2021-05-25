@@ -29,11 +29,17 @@ input[type=radio] {
   vertical-align: top;
 }
 audio {
-  width: 300px;
-  height: 54px;    
+  width: 300px; 
 }
 
 @media screen and (max-width: 1000px) {
+  html {
+    font-size: 4em;  
+    font-family: Verdana; 
+    background-color: #fffcf7; 
+    color: #333333;
+  }
+
   body {
     display: block;
     text-align: center;
@@ -44,5 +50,14 @@ audio {
     margin: auto;
 
  }
+ input{
+  font-size: 1em;
+  } 
+  input[type=radio] {
+    height:1em; 
+    width:1em; 
+    vertical-align: top;
+  }
+
 
 }
